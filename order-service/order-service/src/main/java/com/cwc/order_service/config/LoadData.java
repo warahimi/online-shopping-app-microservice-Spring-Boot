@@ -21,6 +21,7 @@ public class LoadData implements CommandLineRunner {
         if(orderRepository.findAll().size() ==0)
         {
             Order order = new Order();
+            order.setOrderNumber(UUID.randomUUID().toString());
             OrderLineItems orderLineItems1 = OrderLineItems
                     .builder()
                     .skuCode("Iphone_13")
@@ -33,10 +34,33 @@ public class LoadData implements CommandLineRunner {
                     .price(BigDecimal.valueOf(1500))
                     .quantity(24)
                     .build();
-
-            order.setOrderNumber(UUID.randomUUID().toString());
             order.setOrderLineItemsList(new ArrayList<>(Arrays.asList(orderLineItems1,orderLineItems2)));
+
+            Order order2 = new Order();
+            order2.setOrderNumber(UUID.randomUUID().toString());
+            OrderLineItems orderLineItems2_1 = OrderLineItems
+                    .builder()
+                    .skuCode("Laptop Dell 15")
+                    .price(BigDecimal.valueOf(4300))
+                    .quantity(4)
+                    .build();
+            OrderLineItems orderLineItems2_2 = OrderLineItems
+                    .builder()
+                    .skuCode("Macbook Pro 13")
+                    .price(BigDecimal.valueOf(4500))
+                    .quantity(34)
+                    .build();
+            OrderLineItems orderLineItems2_3 = OrderLineItems
+                    .builder()
+                    .skuCode("Desktop Windows")
+                    .price(BigDecimal.valueOf(5000))
+                    .quantity(6)
+                    .build();
+            order2.setOrderLineItemsList(new ArrayList<>(Arrays.asList(orderLineItems2_1,orderLineItems2_2,
+                    orderLineItems2_3)));
+
             orderRepository.save(order);
+            orderRepository.save(order2);
         }
 
     }
