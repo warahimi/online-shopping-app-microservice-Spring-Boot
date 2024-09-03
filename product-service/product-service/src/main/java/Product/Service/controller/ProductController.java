@@ -51,13 +51,21 @@ public class ProductController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+//    @GetMapping("/name/{name}")
+//    public ResponseEntity<List<ProductResponse>> getProductsByName(@PathVariable String name)
+//    {
+//        List<ProductResponse> products = productService.getProductsByName(name);
+//        if(products != null)
+//        {
+//            return new ResponseEntity<>(products,HttpStatus.FOUND);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
     @GetMapping("/name/{name}")
-    public ResponseEntity<List<ProductResponse>> getProductsByName(@PathVariable String name)
-    {
+    public ResponseEntity<List<ProductResponse>> getProductsByName(@PathVariable String name) {
         List<ProductResponse> products = productService.getProductsByName(name);
-        if(products != null)
-        {
-            return new ResponseEntity<>(products,HttpStatus.FOUND);
+        if (products != null && !products.isEmpty()) {
+            return new ResponseEntity<>(products, HttpStatus.FOUND);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
